@@ -46,7 +46,7 @@ class ActivityViewSet(viewsets.ModelViewSet):
     """
     API endpoint for viewing and editing activities
     """
-    queryset = Activity.objects.all()
+    queryset = Activity.objects.all().order_by('-date')
     serializer_class = ActivitySerializer
 
 
@@ -54,7 +54,7 @@ class LeaderboardViewSet(viewsets.ModelViewSet):
     """
     API endpoint for viewing and editing leaderboard
     """
-    queryset = Leaderboard.objects.all()
+    queryset = Leaderboard.objects.all().order_by('rank')
     serializer_class = LeaderboardSerializer
 
 
