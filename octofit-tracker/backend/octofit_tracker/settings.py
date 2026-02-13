@@ -30,6 +30,15 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if os.environ.get('CODESPACE_NAME'):
     ALLOWED_HOSTS.append(f"{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
 
+# CSRF settings for Codespace
+CSRF_TRUSTED_ORIGINS = []
+if os.environ.get('CODESPACE_NAME'):
+    CSRF_TRUSTED_ORIGINS.append(f"https://{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
+
+# Proxy and forwarded host settings for Codespace
+# This ensures Django uses the correct hostname in generated URLs
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
